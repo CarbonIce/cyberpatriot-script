@@ -6,7 +6,6 @@ default_secure_password = "T0tallyS3curePASSWORD!1!!"
 input("WARNING! COMPLETE ALL FORENSICS BEFORE RUNNING! Press enter to confirm.")
 auth_users = []
 auth_admins = []
-os.system('net user > users.txt')
 users = psutil.users()
 names = []
 for user in users:
