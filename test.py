@@ -1,14 +1,13 @@
 #imports
-import psutil #This is what we are gonna use to 
-import subprocess
 import os 
 
 default_secure_password = "T0tallyS3curePASSWORD!1!!"
 input("WARNING! COMPLETE ALL FORENSICS BEFORE RUNNING! Press enter to confirm.")
 auth_users = []
 auth_admins = []
-user_list = psutil.users()
-
+os.system('net user > users.txt')
+user_list = Path('./users.txt').read_text()
+print(user_list)
 
 
 #getting valid users
@@ -34,8 +33,8 @@ while(True):
 
 
 #Disable built in guest + admin account
-subprocess.run(["net", "user", "Guest", "/active", "no"])
-subprocess.run(["net", "user Administrator /active no"])
+os.system("net user Guest /active no")
+os.system("net user Administrator /active no")
 
 
 #TODO: Delete users not in the valid users pool
@@ -43,7 +42,6 @@ for p in user_list:
   if p.name not in auth_users:
     #remove the thing xd
     print("Removed " + p.name + " from life")
-    output = subprocess.run(["net", "user", p.name, "/DELETE", "/DOMAIN"])
-    pass
+    os.system("net user" + p.name  + "/Delete")
   else:
       print(p.name + " is a good boy :)")
