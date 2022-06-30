@@ -6,7 +6,7 @@ input("WARNING! COMPLETE ALL FORENSICS BEFORE RUNNING! Press enter to confirm.")
 auth_users = []
 auth_admins = []
 os.system('net user > users.txt')
-user_list = Path('./users.txt').read_text()
+user_list = os.system("wmic useraccount get name")
 print(user_list)
 
 
