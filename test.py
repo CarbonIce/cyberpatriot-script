@@ -7,8 +7,11 @@ input("WARNING! COMPLETE ALL FORENSICS BEFORE RUNNING! Press enter to confirm.")
 auth_users = []
 auth_admins = []
 os.system('net user > users.txt')
-user_list = psutil.users()
-print(user_list)
+users = psutil.users()
+names = []
+for user in users:
+    names.append(user.name)
+print(names)
 
 
 #getting valid users
@@ -39,10 +42,10 @@ os.system("net user Administrator /active no")
 
 
 #TODO: Delete users not in the valid users pool
-for p in user_list:
-  if p.name not in auth_users or p.name not in auth_admins:
+for p in names:
+  if p not in auth_users or p not in auth_admins:
     #remove the thing xd
-    print("Removed " + p.name + " from life")
-    os.system("net user" + p.name  + "/Delete")
+    print("Removed " + p + " from life")
+    os.system("net user" + p  + "/Delete")
   else:
-      print(p.name + " is a good boy :)")
+      print(p + " is a good boy :)")
