@@ -1,12 +1,13 @@
 #imports
 import os 
-
+import subprocess
+import psutil
 default_secure_password = "T0tallyS3curePASSWORD!1!!"
 input("WARNING! COMPLETE ALL FORENSICS BEFORE RUNNING! Press enter to confirm.")
 auth_users = []
 auth_admins = []
 os.system('net user > users.txt')
-user_list = os.system("wmic useraccount get name")
+user_list = psutil.users()
 print(user_list)
 
 
@@ -39,7 +40,7 @@ os.system("net user Administrator /active no")
 
 #TODO: Delete users not in the valid users pool
 for p in user_list:
-  if p.name not in auth_users:
+  if p.name not in auth_users or p.name not in auth_admins:
     #remove the thing xd
     print("Removed " + p.name + " from life")
     os.system("net user" + p.name  + "/Delete")
