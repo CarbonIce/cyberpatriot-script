@@ -34,8 +34,8 @@ while(True):
 
 
 #Disable built in guest + admin account
-subprocess.run(["net user Guest /active no"])
-subprocess.run(["net user Administrator /active no"])
+subprocess.run(["net", "user", "Guest", "/active", "no"])
+subprocess.run(["net", "user Administrator /active no"])
 
 
 #TODO: Delete users not in the valid users pool
